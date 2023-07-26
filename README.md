@@ -1,18 +1,59 @@
-# Vue 3 + TypeScript + Vite
+# ToDo App (Vue 3)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This document provides instructions on how to set up the development environment and build the application.
 
-## Recommended IDE Setup
+## Getting Started
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Prerequisites
 
-## Type Support For `.vue` Imports in TS
+Before you begin, ensure you have the following installed on your machine:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Node.js (https://nodejs.org)
+- Yarn (https://yarnpkg.com)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Installation
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+1. Clone this repository to your local machine.
+2. In the project directory, run the following command to install the dependencies:
+
+```
+yarn
+```
+
+## Development
+
+To start the development server, run the following command:
+
+```
+yarn dev
+```
+
+This will launch the application in development mode. Open your browser and navigate to http://localhost:3000 to view the application.
+
+## Building the Application
+
+To build the compiled application, run the following command:
+
+```
+yarn build
+```
+
+This will create an optimized production-ready build in the dist directory.
+
+## _Actual_ TODOs
+
+Please find below a list of pending tasks:
+
+1. Rubik Font: Check whether the Rubik font is intended to be implemented as referenced in the Figma design or if it's an oversight.
+
+2. Codegen: Utilize code generation to auto-generate interfaces for objects coming from the backend. This will improve type safety and maintainability.
+
+3. API Composable: Investigate and refactor shared untested code. Consider exploring third-party packages or abstracting common functionality to improve code quality and maintainability.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or want to suggest improvements, please open an issue or create a pull request.
+
+## License
+
+This project is licensed under the MIT License.
