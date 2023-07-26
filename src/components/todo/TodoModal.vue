@@ -1,14 +1,20 @@
 <template>
-  <transition name="fade">
-    <div v-if="modelValue" aria-modal="true" role="dialog" tabindex="-1">
+  <transition name="slide">
+    <div
+      v-if="modelValue"
+      aria-modal="true"
+      role="dialog"
+      tabindex="-1"
+      class="absolute inset-0 flex flex-col"
+    >
       <button
         type="button"
-        class="bg-raisin-black/90 absolute top-0 bottom-0 left-0 right-0"
         @click="$emit('update:modelValue', false)"
+        class="h-8"
       >
         <span class="sr-only">Close</span>
       </button>
-      <div class="absolute inset-0 top-8 bg-rich-black p-4">
+      <div class="flex-1 bg-rich-black p-4">
         <hr class="my-4 border-space-cadet w-8 mx-auto border-b-4 rounded" />
         <slot></slot>
       </div>
@@ -28,22 +34,16 @@ defineEmits(["update:modelValue"]);
 </script>
 
 <style scoped>
-.fade-enter-active {
-  @apply duration-100 ease-out;
+.slide-enter-active {
+  @apply duration-200 ease-out;
 }
-.fade-enter-from {
-  @apply transform opacity-0 scale-125;
+.slide-enter-from {
+  @apply transform translate-y-full;
 }
-.fade-enter-to {
-  @apply opacity-100 scale-100;
+.slide-leave-active {
+  @apply transform duration-200 ease-in;
 }
-.fade-leave-active {
-  @apply transform duration-75 ease-in;
-}
-.fade-leave-from {
-  @apply opacity-100 scale-100;
-}
-.fade-leave-to {
-  @apply opacity-0 scale-125;
+.slide-leave-to {
+  @apply translate-y-full;
 }
 </style>

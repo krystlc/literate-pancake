@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-screen sm:max-w-[375px] max-h-screen sm:max-h-[812px] flex flex-col shadow-2xl shadow-english-violet relative"
+    class="w-full h-screen sm:max-w-[375px] max-h-screen sm:max-h-[812px] flex flex-col shadow-2xl shadow-english-violet relative overflow-hidden"
   >
     <TodoHeader />
     <aside class="p-4 pb-0">
