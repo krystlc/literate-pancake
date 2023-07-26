@@ -26,7 +26,7 @@
       <span><PlusIcon /></span>
       <span class="sr-only">Create Todo</span>
     </button>
-    <TodoModal v-model="showModal">
+    <TodoModal>
       <TodoItemEdit v-if="selectedTodoItem" />
       <TodoItemCreate v-else />
     </TodoModal>

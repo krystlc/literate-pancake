@@ -83,6 +83,6 @@ const { users } = useTodo();
 }
 form input,
 form select {
-  @apply w-full bg-transparent text-white rounded-md border border-space-cadet placeholder:text-white;
+  @apply w-full h-12 bg-space-cadet border-none text-white rounded-md placeholder:text-white;
 }
 </style>
