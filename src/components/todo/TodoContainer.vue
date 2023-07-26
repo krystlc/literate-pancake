@@ -18,19 +18,22 @@
       <span><PlusIcon /></span>
       <span class="sr-only">Create Todo</span>
     </button>
-    <TodoModal v-model="showModal" />
+    <TodoModal v-model="showModal">
+      <TodoItemEdit v-if="selectedTodoItem" />
+      <TodoItemCreate v-else />
+    </TodoModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { useTodo } from "./todoContext";
 import TodoHeader from "./TodoHeader.vue";
 import TodoListItem from "./TodoListItem.vue";
 import TodoModal from "./TodoModal.vue";
 import TodoSearchbar from "./TodoSearchbar.vue";
-import { useTodo } from "./todoContext";
 import PlusIcon from "@/assets/plus.svg";
+import TodoItemCreate from "./TodoItemCreate.vue";
+import TodoItemEdit from "./TodoItemEdit.vue";
 
-const { todos } = useTodo();
-const showModal = ref(false);
+const { todos, showModal, selectedTodoItem } = useTodo();
 </script>

@@ -33,24 +33,21 @@
       </button>
       <AppDropdown v-if="showDropdown" @action:close="showDropdown = false">
         <nav
-          class="p-4 text-sm whitespace-nowrap space-y-2 text-left list-none"
+          class="px-4 py-2 text-sm whitespace-nowrap text-left list-none divide-y divide-space-cadet"
           role="menu"
         >
           <li>
-            <button
-              type="button"
-              @click.prevent="
-                handleDropdownItemClick(() => $emit('action:edit'))
-              "
-            >
+            <button type="button" class="block py-2" @click="handleEdit">
               Edit ToDo
             </button>
           </li>
-          <hr class="border-space-cadet" />
           <li>
             <button
               type="button"
-              @click="handleDropdownItemClick(() => $emit('action:complete'))"
+              class="block py-2 disabled:opacity-70"
+              :class="{ 'animate-pulse': updatingTodo }"
+              :disabled="updatingTodo"
+              @click="handleComplete"
             >
               Mark Completed
             </button>
@@ -63,12 +60,13 @@
 
 <script setup lang="ts">
 import { PropType, ref } from "vue";
-import { Todo } from "./todoContext";
+import { Todo, useUpdateTodo } from "../../composables/useJsonPlaceholder";
+import { useTodo } from "./todoContext";
 import DotsIcon from "@/assets/dots.svg";
 import CheckmarkIcon from "@/assets/checkmark.svg";
 import AppDropdown from "../app/AppDropdown.vue";
 
-defineProps({
+const props = defineProps({
   todo: {
     type: Object as PropType<Todo>,
     default: () => ({}),
@@ -76,12 +74,26 @@ defineProps({
   },
 });
 
-defineEmits(["action:edit", "action:complete"]);
+const { handleTodoEdit, refetchTodos, selectedTab } = useTodo();
+const { mutate, result, loading: updatingTodo } = useUpdateTodo();
 
 const showDropdown = ref(false);
 
-function handleDropdownItemClick(callback: () => void) {
-  callback();
+function handleEdit() {
+  handleTodoEdit({ ...props.todo });
+  showDropdown.value = false;
+}
+async function handleComplete() {
+  await mutate({
+    ...props.todo,
+    completed: true,
+  });
+  if (!result.value) return;
+  if (selectedTab.value === "open") {
+    selectedTab.value = "closed";
+    return;
+  }
+  refetchTodos();
   showDropdown.value = false;
 }
 </script>

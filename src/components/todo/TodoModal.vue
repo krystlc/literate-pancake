@@ -1,11 +1,17 @@
 <template>
   <transition name="fade">
     <div v-if="modelValue" aria-modal="true" role="dialog" tabindex="-1">
-      <div
+      <button
+        type="button"
         class="bg-raisin-black/90 absolute top-0 bottom-0 left-0 right-0"
         @click="$emit('update:modelValue', false)"
-      ></div>
-      <div class="bg-light-green absolute inset-0 top-8">modal time</div>
+      >
+        <span class="sr-only">Close</span>
+      </button>
+      <div class="absolute inset-0 top-8 bg-rich-black p-4">
+        <hr class="my-4 border-space-cadet w-8 mx-auto border-b-4 rounded" />
+        <slot></slot>
+      </div>
     </div>
   </transition>
 </template>

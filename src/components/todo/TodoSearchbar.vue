@@ -4,8 +4,8 @@
       <div class="relative">
         <input
           type="text"
-          name=""
           id="search"
+          v-model="searchInput"
           placeholder="Search Todo's"
           class="bg-space-cadet border-none rounded-md w-full h-12 placeholder:text-white text-white text-sm"
         />
@@ -20,4 +20,7 @@
 
 <script setup lang="ts">
 import SearchIcon from "@/assets/search.svg";
+import { useTodo } from "./todoContext";
+
+const { searchInput } = useTodo();
 </script>
