@@ -14,11 +14,11 @@
         type="button"
         @click="selectedTab = tab.value"
         class="border-b-2 pb-2 px-4"
-        :class="`${
+        :class="
           selectedTab === tab.value
             ? 'border-white text-white'
             : 'border-transparent hover:text-white'
-        } `"
+        "
       >
         {{ tab.key }}
       </button>
