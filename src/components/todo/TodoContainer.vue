@@ -6,9 +6,17 @@
     <aside class="p-4 pb-0">
       <TodoSearchbar />
     </aside>
-    <hr class="my-4 border-space-cadet w-16 mx-auto border-b-2 rounded" />
+    <hr
+      class="my-4 w-16 mx-auto border-b-2 rounded transition-colors"
+      :class="
+        loadingTodos
+          ? 'border-english-violet animate-pulse'
+          : 'border-space-cadet'
+      "
+    />
     <main class="flex-1 overflow-auto px-4 pb-4 space-y-4 relative">
       <TodoListItem v-for="todo in todos" :key="todo.id" :todo="todo" />
+      <p v-if="!loadingTodos && todos">No results</p>
     </main>
     <button
       type="button"
@@ -35,5 +43,5 @@ import PlusIcon from "@/assets/plus.svg";
 import TodoItemCreate from "./TodoItemCreate.vue";
 import TodoItemEdit from "./TodoItemEdit.vue";
 
-const { todos, showModal, selectedTodoItem } = useTodo();
+const { todos, showModal, selectedTodoItem, loadingTodos } = useTodo();
 </script>

@@ -26,6 +26,7 @@ interface TodoContext {
   selectedTab: Ref<TodoTab>;
   tabOptions: TabOption[];
   todos: Ref<Todo[]>;
+  loadingTodos: Ref<boolean>;
   showModal: Ref<boolean>;
   closeModal: () => void;
   searchInput: Ref<string>;
@@ -34,6 +35,7 @@ interface TodoContext {
   handleTodoItemSaved: () => void;
   refetchTodos: () => Promise<void>;
   users: Ref<User[]>;
+  loadingUsers: Ref<boolean>;
 }
 
 const TodoProviderSymbol = Symbol("Todo");
@@ -59,7 +61,6 @@ export const TodoProvider = defineComponent({
     }));
     const {
       loading: loadingTodos,
-      errors: errorLoadingTodos,
       result: allTodos,
       refetch: refetchTodos,
     } = useGetTodos(getTodosInput);
@@ -73,7 +74,6 @@ export const TodoProvider = defineComponent({
 
     const {
       loading: loadingUsers,
-      errors: errorLoadingUsers,
       result: users,
       refetch: refetchUsers,
     } = useGetUsers();
@@ -101,7 +101,9 @@ export const TodoProvider = defineComponent({
       selectedTab,
       tabOptions,
       todos,
+      loadingTodos,
       users,
+      loadingUsers,
       refetchTodos,
       showModal,
       closeModal,

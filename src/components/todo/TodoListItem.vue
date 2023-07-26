@@ -18,7 +18,7 @@
       </h3>
       <span
         class="bg-english-violet group-hover:bg-space-cadet text-xs px-2 py-1 rounded-md"
-        >User: {{ todo.userId }}</span
+        >{{ getUserName(todo.userId) }}</span
       >
     </div>
     <div>
@@ -74,7 +74,7 @@ const props = defineProps({
   },
 });
 
-const { handleTodoEdit, refetchTodos, selectedTab } = useTodo();
+const { handleTodoEdit, refetchTodos, selectedTab, users } = useTodo();
 const { mutate, result, loading: updatingTodo } = useUpdateTodo();
 
 const showDropdown = ref(false);
@@ -95,5 +95,8 @@ async function handleComplete() {
   }
   refetchTodos();
   showDropdown.value = false;
+}
+function getUserName(userId?: number) {
+  return users.value.find((u) => u.id === userId)?.name;
 }
 </script>
