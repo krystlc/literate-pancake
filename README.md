@@ -28,7 +28,7 @@ To start the development server, run the following command:
 yarn dev
 ```
 
-This will launch the application in development mode. Open your browser and navigate to http://localhost:3000 to view the application.
+This will launch the application in development mode. Open your browser and navigate to http://localhost:5173 to view the application.
 
 ## Building the Application
 
